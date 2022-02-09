@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    env_file:
+      - .env
+    restart: always
+    build:
+      context: ./web
+      args:
+        version: ${VERSION}
+    expose:
+      - "${PORT}"
+    ports:
+      - "${PORT}:8000"
+    command: /usr/local/bin/gunicorn --log-file=- --capture-output --config gunicorn.conf -w 2 -b :8000 app:application
+    volumes:
+      - "${DATA_DIRECTORY}:/uploads"
