@@ -16,3 +16,14 @@ services:
     command: /usr/local/bin/gunicorn --log-file=- --capture-output --config gunicorn.conf -w 2 -b :8000 app:application
     volumes:
       - "${DATA_DIRECTORY}:/uploads"
+  worker:
+    env_file:
+      - .env
+    restart: always
+    build:
+      context: ./worker
+      args:
+        version: ${VERSION}
+    command: celery -A celery_worker.celery worker
+    volumes:
+      - "${DATA_DIRECTORY}:/uploads"
