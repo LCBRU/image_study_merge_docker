@@ -11,7 +11,7 @@ RUN apt-get update && \
         default-mysql-client \
         libsasl2-dev \
         libssl-dev \
-        libldap2-dev && \
+        libldap2-dev \
         git && \
     apt-get clean
     
