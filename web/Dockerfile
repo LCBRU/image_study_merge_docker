@@ -16,7 +16,7 @@ RUN apt-get update && \
     
 RUN echo "$version"
 
-RUN svn export --force https://github.com/LCBRU/image_study_merge/trunk/ /usr/src/app/
+RUN git clone https://github.com/LCBRU/image_study_merge.git /usr/src/app/
 ADD gunicorn.conf /usr/src/app/gunicorn.conf
 
 RUN pip install --no-cache-dir gunicorn
