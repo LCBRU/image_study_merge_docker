@@ -12,6 +12,7 @@ RUN apt-get update && \
         libsasl2-dev \
         libssl-dev \
         libldap2-dev && \
+        git && \
     apt-get clean
     
 RUN echo "$version"

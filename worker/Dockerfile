@@ -12,10 +12,11 @@ RUN apt-get update && \
         libsasl2-dev \
         libssl-dev \
         libldap2-dev && \
+        git && \
     apt-get clean
     
 RUN echo "$version"
 
-RUN svn export --force https://github.com/LCBRU/image_study_merge/trunk/ /usr/src/app/
+RUN git clone https://github.com/LCBRU/image_study_merge.git /usr/src/app/
 
 RUN pip install --no-cache-dir -r requirements.txt
