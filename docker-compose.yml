@@ -1,29 +1,20 @@
-version: '3'
-
 services:
   web:
     env_file:
       - .env
     restart: always
-    build:
-      context: ./web
-      args:
-        version: ${VERSION}
+    image: lcbruit/image_study_merge_web:latest
     expose:
       - "${PORT}"
     ports:
       - "${PORT}:8000"
-    command: /usr/local/bin/gunicorn --log-file=- --capture-output --config gunicorn.conf -w 2 -b :8000 app:application
     volumes:
       - "${DATA_DIRECTORY}:/uploads"
   worker:
     env_file:
       - .env
     restart: always
-    build:
-      context: ./worker
-      args:
-        version: ${VERSION}
-    command: celery -A celery_worker.celery worker
+    image: lcbruit/image_study_merge_celery:latest
+    command: worker
     volumes:
       - "${DATA_DIRECTORY}:/uploads"
