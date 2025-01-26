@@ -7,7 +7,7 @@ services:
     expose:
       - "${PORT}"
     ports:
-      - "${PORT}:8000"
+      - "${PORT}:8080"
     volumes:
       - "${DATA_DIRECTORY}:/uploads"
   worker:
